@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                 t2 = currentEind
                 val formatterEind = DateTimeFormatter.ofPattern(("HH:mm"))
                 val formattedEind = currentEind.format(formatterEind)
-                //     var eindUur = DateFormat.getTimeInstance().format(calendar.getTime())
+                //var eindUur = DateFormat.getTimeInstance().format(calendar.getTime())
                 bt_eindUur.text = formattedEind
                 val fromDateTime =t1
                    // LocalDateTime.of(1984, 12, 16, 7, 45, 55)
