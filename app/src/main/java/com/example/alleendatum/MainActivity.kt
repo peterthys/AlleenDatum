@@ -27,6 +27,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     //    tv_datum.text = formatted
 
+
+		// Wouter heeft hier vanalles gedaan
     }
 
 
