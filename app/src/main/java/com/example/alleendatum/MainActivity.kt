@@ -3,6 +3,7 @@ package com.example.alleendatum
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.NumberPicker
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -28,24 +29,27 @@ class MainActivity : AppCompatActivity() {
         pickerUren.maxValue = 12
         pickerUren.wrapSelectorWheel = true
         pickerUren.setOnValueChangedListener { pickerUren, oldVal, newVal -> tv_pauze_uur.setText("$newVal") }
-        val uuuur : Int = R.id.tv_pauze_uur
 
-
-
-
-
-//        pickerMinuten.minValue = 0
-//        pickerMinuten.maxValue = 60
-//        pickerMinuten.wrapSelectorWheel = true
-//        pickerMinuten.setOnValueChangedListener { pickerMinuten, oldVal, newVal -> tv_pauze_minuten.setText ("$newVal") }
+        val pickerMinuten = findViewById<NumberPicker>(R.id.numberPickerMinuten)
+        pickerMinuten.minValue = 0
+        pickerMinuten.maxValue = 60
+        pickerMinuten.value= 30
+        pickerMinuten.wrapSelectorWheel = true
+        pickerMinuten.setOnValueChangedListener { pickerMinuten, oldVal, newVal -> tv_pauze_minuten.setText ("$newVal") }
 //
         var pickerCustomers = findViewById<NumberPicker>(R.id.numberPickerCustomers)
-        if (pickerCustomers!=null){
+        if (pickerCustomers != null) {
             pickerCustomers.minValue = 0
             pickerCustomers.wrapSelectorWheel = true
-            pickerCustomers.maxValue = customerList.size-1
+            pickerCustomers.maxValue = customerList.size - 1
             pickerCustomers.displayedValues = customerList
-            pickerCustomers.setOnValueChangedListener { pickerCustomers, oldVal, newVal -> tv_customer.setText("$newVal") }
+            pickerCustomers.setOnValueChangedListener { pickerCustomers, oldVal, newVal ->
+                tv_customer.setText(
+                    "customer : $newVal"
+                )
+            }
+//            val pauzeUur : Int = R.id.tv_pauze_uur
+//            bt_resultaat.text = pauzeUur.toString()
 
         }
 
@@ -90,16 +94,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun berekeningWerkTijd(view: View) {
-       pauzeUren = Integer.parseInt(tv_pauze_uur.toString())
-//        pauzeMinuten = Integer.parseInt(pickerMinuten.text.toString())
-        //       val pauzeTotaal = pauzeUren * 60 + pauzeMinuten
+    val edittxt = findViewById<EditText>(R.id.tv_pauze_uur)
+        pauzeUren = edittxt.text.toString().toInt()
+        val edittxt2 = findViewById<EditText>(R.id.tv_pauze_minuten)
+     pauzeMinuten =  edittxt2.text.toString().toInt()
+       val pauzeTotaal = pauzeUren * 60 + pauzeMinuten
         var werkTijd =
-            ((eindTijdInUren * 60) + (eindTijdInMinuten)) - ((beginTijdInUren * 60) + (beginTijdInMinuten)) //- pauzeTotaal
+            ((eindTijdInUren * 60) + (eindTijdInMinuten)) - ((beginTijdInUren * 60) + (beginTijdInMinuten)) - pauzeTotaal
         var werkTijdInUren: Int = werkTijd / 60
         var werktijdInMinuten: Int = werkTijd - werkTijdInUren * 60
         var resultaat: String =
             werkTijdInUren.toString() + " u  " + werktijdInMinuten.toString() + " min."
-
+        bt_resultaat.text = resultaat
 
     }
 
