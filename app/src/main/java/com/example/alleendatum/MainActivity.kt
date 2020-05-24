@@ -8,7 +8,6 @@ import android.widget.NumberPicker
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
-import java.text.NumberFormat
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,9 +32,13 @@ class MainActivity : AppCompatActivity() {
         val pickerMinuten = findViewById<NumberPicker>(R.id.numberPickerMinuten)
         pickerMinuten.minValue = 0
         pickerMinuten.maxValue = 60
-        pickerMinuten.value= 30
+        pickerMinuten.value = 30
         pickerMinuten.wrapSelectorWheel = true
-        pickerMinuten.setOnValueChangedListener { pickerMinuten, oldVal, newVal -> tv_pauze_minuten.setText ("$newVal") }
+        pickerMinuten.setOnValueChangedListener { pickerMinuten, oldVal, newVal ->
+            tv_pauze_minuten.setText(
+                "$newVal"
+            )
+        }
 //
         var pickerCustomers = findViewById<NumberPicker>(R.id.numberPickerCustomers)
         if (pickerCustomers != null) {
@@ -48,8 +51,6 @@ class MainActivity : AppCompatActivity() {
                     "customer : $newVal"
                 )
             }
-//            val pauzeUur : Int = R.id.tv_pauze_uur
-//            bt_resultaat.text = pauzeUur.toString()
 
         }
 
@@ -94,11 +95,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun berekeningWerkTijd(view: View) {
-    val edittxt = findViewById<EditText>(R.id.tv_pauze_uur)
+        val edittxt = findViewById<EditText>(R.id.tv_pauze_uur)
         pauzeUren = edittxt.text.toString().toInt()
         val edittxt2 = findViewById<EditText>(R.id.tv_pauze_minuten)
-     pauzeMinuten =  edittxt2.text.toString().toInt()
-       val pauzeTotaal = pauzeUren * 60 + pauzeMinuten
+        pauzeMinuten = edittxt2.text.toString().toInt()
+        val pauzeTotaal = pauzeUren * 60 + pauzeMinuten
         var werkTijd =
             ((eindTijdInUren * 60) + (eindTijdInMinuten)) - ((beginTijdInUren * 60) + (beginTijdInMinuten)) - pauzeTotaal
         var werkTijdInUren: Int = werkTijd / 60
@@ -108,78 +109,5 @@ class MainActivity : AppCompatActivity() {
         bt_resultaat.text = resultaat
 
     }
-
-
-//    fun beginUurWeergeven(view: View) {
-//
-//        val buSelected = view as Button
-//        when (buSelected.id) {
-//            bt_beginUur.id -> {
-//                val currentBegin = LocalDateTime.now()
-//                t1 = currentBegin
-//                val formatterBegin = DateTimeFormatter.ofPattern(("HH:mm"))
-//                val formattedBegin = currentBegin.format(formatterBegin)
-//
-//                //  var beginUur = DateFormat.getTimeInstance().format(calendar.getTime())
-//                bt_beginUur.text = formattedBegin
-//
-//            }
-//        }
-//    }
-//
-//    fun eindUurWeergeven(view: View) {
-//        val buSelected2 = view as Button
-//        when (buSelected2.id) {
-//
-//            bt_eindUur.id -> {
-//                val currentEind = LocalDateTime.now()
-//                t2 = currentEind
-//                val formatterEind = DateTimeFormatter.ofPattern(("HH:mm"))
-//                val formattedEind = currentEind.format(formatterEind)
-//                //var eindUur = DateFormat.getTimeInstance().format(calendar.getTime())
-//                bt_eindUur.text = formattedEind
-//                val fromDateTime =t1
-//                   // LocalDateTime.of(1984, 12, 16, 7, 45, 55)
-//                val toDateTime = t2
-//                 //   LocalDateTime.of(2014, 9, 10, 6, 40, 45)
-//
-//                var tempDateTime =
-//                    LocalDateTime.from(fromDateTime)
-//
-//                val years = tempDateTime.until(toDateTime, ChronoUnit.YEARS)
-//                tempDateTime = tempDateTime.plusYears(years)
-//
-//                val months = tempDateTime.until(toDateTime, ChronoUnit.MONTHS)
-//                tempDateTime = tempDateTime.plusMonths(months)
-//
-//                val days = tempDateTime.until(toDateTime, ChronoUnit.DAYS)
-//                tempDateTime = tempDateTime.plusDays(days)
-//
-//
-//                val hours = tempDateTime.until(toDateTime, ChronoUnit.HOURS)
-//                tempDateTime = tempDateTime.plusHours(hours)
-//
-//                val minutes = tempDateTime.until(toDateTime, ChronoUnit.MINUTES)
-//                tempDateTime = tempDateTime.plusMinutes(minutes)
-//
-//                val seconds = tempDateTime.until(toDateTime, ChronoUnit.SECONDS)
-//
-//                println(
-//                    years.toString() + " years " +
-//                            months + " months " +
-//                            days + " days " +
-//                            hours + " hours " +
-//                            minutes + " minutes " +
-//                            seconds + " seconds."
-//                )
-//                var som = minutes + seconds
-//
-//                tv_datum.text = "Resultaat  " +hours.toString() + " hours " +
-//                        minutes + " minutes" +
-//                        seconds + "seconds."//  Som = "+tempDateTime
-//            }
-//        }
-//    }
-
 
 }
