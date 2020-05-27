@@ -57,12 +57,13 @@
         android:id="@+id/tv_customer"
         android:layout_width="0dp"
         android:layout_height="88dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="72dp"
-        app:layout_constraintStart_toEndOf="@+id/numberPickerCustomers"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="56dp"
+        android:text="customer"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/tv_pauze_uur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,12 +74,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bt_eindUur" />
 
-    <EditText
+    <TextView
+
         android:id="@+id/tv_pauze_minuten"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
-        android:text="30"
+
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.534"
         app:layout_constraintStart_toEndOf="@+id/tv_pauze_uur"
